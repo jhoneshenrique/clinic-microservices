@@ -31,7 +31,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.jhs.doctorservice"))
-                .paths(regex("/api/availabletime.*")) //api root resource
+                .paths(regex("/api/.*")) //api root resource
                 .build()
                 .apiInfo(metaInfo());
     }

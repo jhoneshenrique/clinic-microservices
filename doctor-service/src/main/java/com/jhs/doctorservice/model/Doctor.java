@@ -1,10 +1,9 @@
 package com.jhs.doctorservice.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -17,7 +16,9 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Doctor {
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Doctor extends RepresentationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

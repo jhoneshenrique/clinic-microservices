@@ -18,7 +18,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/api/availabletime")
 @RequiredArgsConstructor
 public class AvailableTimeController {
-    //Dependency Injection
     private final AvailableTimeServiceImplemen availableTimeServiceImplemen;
 
     @ApiOperation(value = "Adds a new Available Time to the system.")
@@ -45,7 +44,7 @@ public class AvailableTimeController {
         return availableTimeList;
     }
 
-    @ApiOperation(value = "Loads all the Available Time saved on the database.")
+    @ApiOperation(value = "Loads a specific Available Time saved on the database.")
     @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody AvailableTimeResponse loadAvailableTime(@PathVariable(value = "id") long id){

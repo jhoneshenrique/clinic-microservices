@@ -17,7 +17,7 @@ public class AvailableTimeServiceImplemen implements AvailableTimeService {
 
     @Override
     public void createAvailableTime(AvailableTimeRequest availableTimeRequest){
-        availableTimeRepository.save(mapAvailableTimeRequestToModel(availableTimeRequest));
+       AvailableTime availableTime = availableTimeRepository.save(mapAvailableTimeRequestToModel(availableTimeRequest));
     }
 
     @Override
