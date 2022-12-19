@@ -29,17 +29,17 @@ public class PatientServiceImplemen implements PatientService {
 
     @Override
     public PatientResponse getPatientById(long id) {
-        return null;
+        return mapModelToPatientResponse(patientRepository.findPatientById(id));
     }
 
     @Override
     public void updatePatient(PatientResponse patientResponse) {
-
+        patientRepository.save(mapPatientResponseToModel(patientResponse));
     }
 
     @Override
     public void deletePatient(PatientResponse patientResponse) {
-
+        patientRepository.delete(mapPatientResponseToModel(patientResponse));
     }
 
     public Patient mapPatientRequestToModel(PatientRequest patientRequest){
@@ -48,7 +48,7 @@ public class PatientServiceImplemen implements PatientService {
                 .givenName(patientRequest.getGivenName())
                 .birthDate(patientRequest.getBirthDate())
                 .phoneNumber(patientRequest.getPhoneNumber())
-                .email(patientRequest.getPhoneNumber())
+                .email(patientRequest.getEmail())
                 .build();
     }
 
@@ -60,6 +60,17 @@ public class PatientServiceImplemen implements PatientService {
                 .birthDate(patient.getBirthDate())
                 .phoneNumber(patient.getPhoneNumber())
                 .email(patient.getEmail())
+                .build();
+    }
+
+    public Patient mapPatientResponseToModel(PatientResponse patientResponse){
+        return Patient.builder()
+                .id(patientResponse.getId())
+                .familyName(patientResponse.getFamilyName())
+                .givenName(patientResponse.getGivenName())
+                .birthDate(patientResponse.getBirthDate())
+                .phoneNumber(patientResponse.getPhoneNumber())
+                .email(patientResponse.getEmail())
                 .build();
     }
 }

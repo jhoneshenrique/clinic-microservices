@@ -28,4 +28,22 @@ public class PatientController {
         return patientServiceImplemen.getAllPatients();
     }
 
+    @GetMapping(value = "/{id}",produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public PatientResponse getPatientById(@PathVariable(value = "id") Long id){
+        return patientServiceImplemen.getPatientById(id);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePatient(@RequestBody PatientResponse patientResponse){
+        patientServiceImplemen.updatePatient(patientResponse);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePatient(@RequestBody PatientResponse patientResponse){
+        patientServiceImplemen.deletePatient(patientResponse);
+    }
+
 }
