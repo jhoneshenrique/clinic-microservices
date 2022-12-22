@@ -16,15 +16,16 @@ import java.time.LocalTime;
 public class AppointmentImplen implements AppointmentService {
 
     //Dependency Injection
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
+
 
 
     @Override
     public boolean createAppointment(Long doctoId, String appointmentWeekDay, String appointmentWeekTime) {
 
         //Call doctor to see if the day is available
-        boolean result = webClient.get()
-                .uri("http://localhost:8080/api/doctor/"+doctoId+"/"+appointmentWeekDay+"/"+appointmentWeekTime)
+        boolean result = webClientBuilder.build().get()
+                .uri("http://doctor-service/api/doctor/"+doctoId+"/"+appointmentWeekDay+"/"+appointmentWeekTime)
                 .retrieve()
                 .bodyToMono(Boolean.class) //retrieve the body of the info. The Boolean.class is because the method returns a boolean
                 .block(); //That tell us is a syncronous call.
